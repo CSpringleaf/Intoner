@@ -1,0 +1,3 @@
+# PIS stage 1: acoustic-model warmup (paper §4.2), 120k steps.
+base_config: ./base.yaml
+task_cls: intoner.pis.tasks.acoustic.FastSpeech2Task

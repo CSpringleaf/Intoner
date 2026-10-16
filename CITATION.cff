@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this implementation, please cite the Intoner paper below."
+type: software
+title: "Intoner: For Chinese Poetry Intoning Synthesis"
+authors: &authors
+  - family-names: Zuo
+    given-names: Heda
+  - family-names: Sun
+    given-names: Liyao
+  - family-names: Lai
+    given-names: Zeyu
+  - family-names: You
+    given-names: Weitao
+  - family-names: Chen
+    given-names: Pei
+  - family-names: Sun
+    given-names: Lingyun
+preferred-citation:
+  type: conference-paper
+  title: "Intoner: For Chinese Poetry Intoning Synthesis"
+  authors: *authors
+  year: 2025
+  collection-title: "Proceedings of the Thirty-Fourth International Joint Conference on Artificial Intelligence"
+  start: 10252
+  end: 10260
+  doi: "10.24963/ijcai.2025/1139"
+  url: "https://www.ijcai.org/proceedings/2025/1139"

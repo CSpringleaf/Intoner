@@ -1,0 +1,44 @@
+# Python environments, caches and build output
+.venv*/
+venv/
+.conda/
+.cache/
+.local/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Editor and OS state
+.vscode/
+.idea/
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Datasets, checkpoints and generated artifacts (see data/README.md)
+/data/*
+!/data/README.md
+/checkpoints/*
+/logs/
+/outputs/
+/artifacts/
+/lightning_logs/
+/runs/
+/wandb/
+*.ckpt
+*.pt
+*.pth
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.log

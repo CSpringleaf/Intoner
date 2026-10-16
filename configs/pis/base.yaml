@@ -1,0 +1,125 @@
+# Shared PIS settings (paper §4.2). Stage recipes: warmup.yaml (acoustic model) and diffusion.yaml.
+# Relative paths are resolved from the repository root.
+
+# ---- run ----
+seed: 1234
+save_codes: [configs, intoner]
+load_ckpt: ''
+save_ckpt: true
+save_best: false
+num_ckpt_keep: 5
+max_updates: 120000
+val_check_interval: 1000
+log_interval: 20
+num_sanity_val_steps: 2
+num_valid_plots: 2
+accumulate_grad_batches: 1
+clip_grad_norm: 1
+
+# ---- data (see docs/dataset.md) ----
+raw_data_dir: data/intoner/pis/raw
+processed_data_dir: data/intoner/pis/processed
+binary_data_dir: data/intoner/pis/binary
+train_set_name: train
+valid_set_name: valid
+test_set_name: test
+test_num: 523
+valid_num: 871
+num_test_samples: 20
+test_ids: [ 68, 70, 74, 87, 110, 172, 190, 215, 231, 294,
+            316, 324, 402, 422, 485, 500, 505, 508, 509, 519 ]
+test_input_dir: ''
+ds_workers: 4
+endless_ds: true
+sort_by_len: true
+max_frames: 1550
+max_input_tokens: 1550
+max_tokens: 32000
+max_sentences: 48
+max_eval_tokens: 16000
+max_eval_sentences: 8
+num_spk: 24
+reset_phone_dict: false
+pre_align_args:
+  forced_align: mfa
+binarization_args:
+  shuffle: false
+  with_txt: true
+  with_wav: false
+  with_align: true
+  with_spk_embed: true
+  with_f0: true
+  with_f0cwt: true
+
+# ---- audio ----
+audio_sample_rate: 22050
+audio_num_mel_bins: 80
+fft_size: 1024
+hop_size: 256
+win_size: 1024
+fmin: 80
+fmax: 7600
+min_level_db: -100
+loud_norm: false
+mel_vmin: -6
+mel_vmax: 1.5
+
+# ---- acoustic model: FastSpeech2 with tone, rhyme and sentence-order inputs ----
+hidden_size: 256
+dropout: 0.1
+enc_layers: 4
+dec_layers: 4
+num_heads: 2
+enc_ffn_kernel_size: 9
+dec_ffn_kernel_size: 9
+ffn_act: gelu
+ffn_padding: SAME
+encoder_type: fft
+decoder_type: fft
+use_pos_embed: true
+predictor_hidden: -1
+predictor_kernel: 5
+predictor_layers: 2
+predictor_dropout: 0.5
+predictor_grad: 0.1
+dur_predictor_kernel: 3
+dur_predictor_layers: 2
+dur_loss: mse
+use_pitch_embed: true
+pitch_type: cwt
+pitch_ar: false
+pitch_loss: l1
+pitch_norm: log
+use_uv: true
+cwt_hidden_size: 128
+cwt_loss: l1
+cwt_add_f0_loss: false
+cwt_std_scale: 0.8
+use_energy_embed: false
+use_spk_id: false
+use_split_spk_id: false
+use_spk_embed: false
+use_gt_dur: false
+use_gt_f0: false
+mel_loss: l1
+lambda_f0: 1.0
+lambda_uv: 1.0
+lambda_energy: 0.1
+lambda_ph_dur: 1.0
+lambda_sent_dur: 1.0
+lambda_word_dur: 1.0
+
+# ---- optimisation ----
+lr: 2.0
+warmup_updates: 2000
+optimizer_adam_beta1: 0.9
+optimizer_adam_beta2: 0.98
+weight_decay: 0
+
+# ---- vocoder and inference outputs ----
+vocoder: intoner.vocoders.hifigan.HifiGAN
+vocoder_ckpt: checkpoints/0414_hifi_lj_1
+profile_infer: false
+gen_dir_name: ''
+save_gt: false
+save_f0: false
